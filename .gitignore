@@ -1,0 +1,73 @@
+apps/crm/migrations/
+apps/customers/migrations/
+apps/dashboard/migrations/
+apps/users/migrations/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Virtualenv / Venv
+venv/
+ENV/
+env/
+.lenv/
+.lvenv/
+.lenv.bak/
+*.env
+*.venv
+admin_panel/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+#static/
+local_settings.py
+
+# Migrations (ixtiyoriy, agar faqat lokal uchun bo‘lsa)
+*/migrations/__pycache__/
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# PyCharm project files
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage / Testing
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+.cache/
+
+# MyPy / Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Other
+*.swp

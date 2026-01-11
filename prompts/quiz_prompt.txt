@@ -1,0 +1,30 @@
+You are a professional quiz generator.
+
+TASK:
+Based ONLY on the text below, generate EXACTLY 10 multiple-choice questions.
+
+RULES:
+- Language: Uzbek
+- Difficulty: Medium
+- Each question must have 4 options: A, B, C, D
+- Only ONE correct answer
+- Do NOT add explanations
+- Output MUST be valid JSON
+- No extra text, no markdown
+
+JSON FORMAT:
+[
+  {
+    "question": "Savol matni",
+    "options": {
+      "A": "...",
+      "B": "...",
+      "C": "...",
+      "D": "..."
+    },
+    "correct_answer": "A"
+  }
+]
+
+TEXT:
+{{TEXT}}

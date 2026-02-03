@@ -1,0 +1,18 @@
+Talab , Ishonch, Qo'rquv.
+
+1. Talab
+	❗️Insonlar bizdagi yo'nalishlar bo'yicha service ko'rsatuvchilarga qanday bog'lanishadi ?
+	❗️Bog'lanishganda qanday noqulayliklar mavjud ?
+	❗️Har xil turdagi va shu servislarni oson yurgizuvchi raqobatchilar kimlar ?
+	❗️Raqobatchilarning mijoz va provider o'rtasidagi noqulay va eng yoqib tushuvchi takliflari qanday ?
+
+2. Ishonch va Qo'rquv
+	❗️Bizning ilova orqali providerlar bilan ishlaganda mijozdagi qo'rquvlar qanday ?
+	❗️Mijoz qo'rquvlarini yo'qqa chiqarib bizga nisbatan ishonch hosil qiluvchi amallar qanday ?
+
+
+=========
+
+1. Click va Payme misolidagi raqobatlashuvchi g'oyalar
+2. Qandaydir bir jarayonni insonlar Bizi dagi terminlar bilan atash !
+3. 

@@ -5,11 +5,30 @@ from aiogram.types import Message, Document
 from services.file_parser import parse_file
 from services.text_cleaner import clean_text
 from services.quiz_generator import generate_quiz
+from services.quiz_formatter import format_quiz_item, parse_quiz_json
+
+import logging
+
+# ✅ LOGGING CONFIG (shuni qo‘shish shart)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+)
+
+logger = logging.getLogger(__name__)
 
 file_router = Router()
 
 ALLOWED_EXTENSIONS = (".pdf", ".docx", ".txt")
 UPLOAD_DIR = "uploads"
+
+
+async def send_quiz_messages(message: Message, quiz_list: list[dict]):
+    await message.answer("✅ Quizlar tayyor! Savollar ketma-ket yuborilmoqda...", parse_mode="Markdown")
+
+    for idx, item in enumerate(quiz_list, start=1):
+        text = format_quiz_item(idx, item)
+        await message.answer(text, parse_mode="Markdown")
 
 
 @file_router.message(lambda m: m.document is not None)
@@ -59,13 +78,18 @@ async def handle_file(message: Message):
     # 4️⃣ TEXT → QUIZ (OpenAI)
     try:
         quiz_json = generate_quiz(clean_text_data)
+        logger.info(f"Generating Done")
     except Exception as e:
         await message.answer("❌ Quiz generatsiyada xatolik yuz berdi.")
         return
 
-    # 5️⃣ Natijani yuborish (hozircha raw JSON)
-    await message.answer(
-        "🎉 Quiz tayyor!\n\n"
-        "📌 Quyida 10 ta savol (JSON format):\n\n"
-        f"{quiz_json[:3500]}"
-    )
+    try:
+        quiz_list = parse_quiz_json(quiz_json)
+    except Exception:
+        await message.answer(
+            "❌ Quiz generatsiya bo‘ldi, lekin formatni o‘qib bo‘lmadi.\n"
+            "Iltimos, yana bir bor urinib ko‘ring."
+        )
+        return
+
+    await send_quiz_messages(message, quiz_list)

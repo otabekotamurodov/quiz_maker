@@ -5,18 +5,24 @@ load_dotenv()
 
 import asyncio
 from aiogram import Bot, Dispatcher
-from config import BOT_TOKEN
+from config import BOT_TOKEN, validate_config
 
 from bot.handlers.start import start_router
 from bot.handlers.file_upload import file_router
 import logging
 
+# ✅ LOGGING CONFIG (shuni qo‘shish shart)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+)
+
 logger = logging.getLogger(__name__)
 
 
 async def main():
+    validate_config()
     logger.info("Bot started")
-    logger.info(f"{BOT_TOKEN}")
     bot = Bot(token=BOT_TOKEN)
     dp = Dispatcher()
 

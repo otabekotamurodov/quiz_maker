@@ -1,0 +1,18 @@
+[Unit]
+Description=Quiz Maker Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=quizbot
+Group=quizbot
+WorkingDirectory=/opt/quiz_maker
+EnvironmentFile=/opt/quiz_maker/.env
+ExecStart=/opt/quiz_maker/.venv/bin/python /opt/quiz_maker/main.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

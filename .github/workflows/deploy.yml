@@ -22,18 +22,23 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_PORT || '22' }}
           script: |
-            export REPO_URL="${{ github.event.workflow_run.repository.clone_url }}"
+            export REPO_URL="git@github.com:otabekotamurodov/quiz_maker.git"
             export APP_DIR="${{ secrets.DEPLOY_PATH }}"
             export BRANCH="${{ github.event.workflow_run.head_branch }}"
+
             /bin/bash -lc '
               set -e
+
               if [ ! -d "$APP_DIR/.git" ]; then
-                mkdir -p "$APP_DIR"
+                rm -rf "$APP_DIR"
                 git clone --branch "$BRANCH" "$REPO_URL" "$APP_DIR"
               fi
+
               cd "$APP_DIR"
+
               git fetch origin
               git checkout "$BRANCH"
               git reset --hard "origin/$BRANCH"
-              bash scripts/deploy.sh
+
+              bash deploy/deploy.sh
             '
